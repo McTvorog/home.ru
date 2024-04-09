@@ -18,13 +18,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'equipment')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type_id')->textInput() ?>
+    <?= $form->field($model, 'type_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\Type::find()
+        ->all(), 'id', 'name')) ?>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'orderstatus_id')->textInput() ?>
 
-    <?= $form->field($model, 'responsible_id')->textInput() ?>
+    <?= $form->field($model, 'responsible_id')->dropDownList(\yii\helpers\ArrayHelper::map(\app\models\User::find()
+        ->all(), 'id', 'fio')) ?>
 
     <?= $form->field($model, 'datatime_end')->textInput() ?>
 

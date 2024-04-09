@@ -37,9 +37,9 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Создать заявку', 'url' => ['/order/create']],
-            ['label' => 'Просмотр заявок', 'url' => ['/order/index']],
-            ['label' => 'Редактирование заявки', 'url' => ['/order/']],
+            ['label' => 'Создать заявку', 'url' => ['/order/create'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Просмотр заявок', 'url' => ['/order/index'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'Зарегестрироваться', 'url' => ['/user/create'], 'visible' => Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вход', 'url' => ['/site/login']]
             ) : (

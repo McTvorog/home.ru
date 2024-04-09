@@ -94,6 +94,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['login', 'password', 'fio'], 'string', 'max' => 255],
             [['login'], 'unique'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
+            [['fio'], 'match', 'pattern' => '/^[а-яА-ЯёЁ -]+$/u', 'message' => 'Разрешены русские буквы, пробел и тире'],
+            [['login'], 'match', 'pattern' => '/^[a-zA-Z0-9-]+$/i', 'message' => 'Разрешены латинские буквы, цифры и тире'],
         ];
     }
 
@@ -104,7 +106,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'login' => 'Логие',
+            'login' => 'Логин',
             'password' => 'Пароль',
             'fio' => 'ФИО',
             'role_id' => 'Role ID',
